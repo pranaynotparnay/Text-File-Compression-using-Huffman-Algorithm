@@ -1,52 +1,63 @@
-# Text-File-Compression-using-Huffman-Algorithm
 # Text File Compression using Huffman Algorithm
 
-This program compresses text files using the Huffman Algorithm. The compression process reduces the size of the text file by encoding characters with variable-length codes based on their frequencies.
-
-## Features
-
-- Compresses text files using Huffman coding.
-- Generates a frequency table of characters in the text file.
-- Creates Huffman codes for each character.
-- Writes the compressed data to a new file with the `.cmp` extension.
-- Calculates and displays the compression ratio.
+This program demonstrates text file compression using the Huffman coding algorithm implemented in C++. Huffman coding is a widely used technique for lossless data compression.
 
 ## How It Works
 
-### Compression
+The program consists of several key components:
 
-1. **Calculate Character Frequencies:** 
-   - The program reads the input file and calculates the frequency of each character.
-   - Characters with non-zero frequencies are stored in a character map.
+1. **Character Frequency Calculation**: 
+   - Reads a text file to determine the frequency of each character present.
+   - Characters with non-zero frequency are considered for compression.
 
-2. **Build Huffman Tree:**
-   - A min-heap is used to build the Huffman tree. Nodes with the lowest frequencies are combined to create parent nodes, forming the tree.
+2. **Huffman Tree Construction**: 
+   - Constructs a Huffman tree using a priority queue (min-heap).
+   - Huffman codes (bit sequences) are generated based on the tree structure.
+   - Each character is assigned a unique Huffman code based on its frequency.
 
-3. **Generate Huffman Codes:**
-   - The program traverses the Huffman tree to generate codes for each character.
-   - These codes are stored in the character map.
+3. **Compression Process**: 
+   - Converts each character in the input file into its corresponding Huffman code.
+   - Writes these codes bit-by-bit into an output binary file.
 
-4. **Write Compressed Data:**
-   - The Huffman codes are written bit by bit to the output file using a bitwise writer.
-   - The program also generates a `codes.txt` file containing the character-to-code mappings.
+4. **Compression Ratio Calculation**: 
+   - Calculates the compression ratio achieved.
+   - The compression ratio is the ratio of the original file size to the compressed file size.
 
-5. **Calculate Compression Ratio:**
-   - The program calculates and displays the compression ratio by comparing the original file size with the compressed file size.
+5. **Output**: 
+   - Generates a compressed file with a `.cmp` extension.
+   - Outputs a file `codes.txt` containing the mapping of characters to their Huffman codes.
 
-## Results
+## Steps to Run
 
-The compressed file is saved with a `.cmp` extension, and the compression ratio is displayed at the end of the process.
+To run the program:
 
-## How to Run
-
-### Prerequisites
-
-- A C++ compiler (e.g., g++, clang++)
-- The input text file to compress
-
-### Steps
-
-1. **Compile the Source Code:**
-
-   ```sh
+1. **Compile**: Compile the `compress.cpp` file using a C++ compiler.
+   ```bash
    g++ compress.cpp -o compress
+
+2.. **Execute**: Run the compiled executable (`compress.exe` on Windows or `./compress` on Linux).
+
+3. **Input**: Enter the name of the text file you want to compress.
+
+4. **Output**:
+   - A compressed file with a `.cmp` extension will be generated.
+   - The compression ratio achieved will be displayed.
+   - The Huffman codes for each character will be stored in `codes.txt`.
+
+## Example
+
+Suppose you have a file named `input.txt` containing text to be compressed:
+
+- **Input**: `input.txt`
+- **Output**: `input.cmp` (compressed file)
+
+After compression, you'll have:
+
+- `codes.txt`: A file mapping characters to their Huffman codes.
+- Display of compression ratio achieved.
+
+## Notes
+
+- The program uses Huffman coding to create variable-length codes for characters based on their frequency of occurrence.
+- The `BitwiseWrite` class handles bit-wise writing to efficiently pack bits into bytes for the output file.
+- Ensure the input file exists in the same directory or provide the full path when prompted.
